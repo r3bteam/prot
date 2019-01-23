@@ -25,8 +25,7 @@ client.on('ready', () => {
 	data[ss.executor.id].time = 0
 	u.guild.roles.forEach(r => {
 		r.edit({
-			hoist: false
-
+			permissions: []
 					}); 
 					data[ss.executor.id].time = 0
 				});

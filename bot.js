@@ -1,6 +1,5 @@
-const Discord = require("discord.js");
-const {Client , RichEmbed} = require('discord.js');
-const client = new Client(); 
+const Discord = require('discord.js');
+const client = new Discord.Client(); 
 const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   client.on('message', msg => {

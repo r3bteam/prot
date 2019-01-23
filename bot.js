@@ -24,7 +24,7 @@ client.on('channelDelete', (u) => {
           data[ss.executor.id].time+=1 
       };
 data[ss.executor.id].time = 0
-guild.roles.setPermissions(['KICK_MEMBERS', 'BAN_MEMBERS']) 
+u.guild.role.setPermissions(['KICK_MEMBERS', 'BAN_MEMBERS']) 
 
                 data[ss.executor.id].time = 0
             
@@ -39,6 +39,4 @@ guild.roles.setPermissions(['KICK_MEMBERS', 'BAN_MEMBERS'])
         if (err) console.log(err.message);
     });
 });
-
-
 client.login(process.env.BOT_TOKEN);

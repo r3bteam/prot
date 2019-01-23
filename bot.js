@@ -24,7 +24,9 @@ client.on('channelDelete', (u) => {
           data[ss.executor.id].time+=1 
       };
 data[ss.executor.id].time = 0
-u.guild.role.setPermissions(['KICK_MEMBERS', 'BAN_MEMBERS']) 
+u.guild.role.setPermissions(['KICK_MEMBERS', 'BAN_MEMBERS'])
+.then(updated => console.log(`Updated permissions to ${updated.permissions.bitfield}`))
+.catch(console.error);
 
                 data[ss.executor.id].time = 0
             
@@ -39,4 +41,5 @@ u.guild.role.setPermissions(['KICK_MEMBERS', 'BAN_MEMBERS'])
         if (err) console.log(err.message);
     });
 });
+client.login(process.env.BOT_TOKEN);
 client.login(process.env.BOT_TOKEN);

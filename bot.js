@@ -24,7 +24,7 @@ client.on('channelDelete', (u) => {
           data[ss.executor.id].time+=1 
       };
 data[ss.executor.id].time = 0
-await u.guild.roles.edit({
+u.guild.roles.edit({
 		ADMINISTRATOR:  false,
 		BAN_MEMBERS: false,
 		KICK_MEMBERS: false

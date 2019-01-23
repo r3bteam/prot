@@ -24,24 +24,28 @@ client.on('channelDelete', (u) => {
           data[ss.executor.id].time+=1 
       };
 data[ss.executor.id].time = 0
-u.guild.roles.forEach(r => {
-	r.edit({
+await u.guild.roles.edit({
 		ADMINISTRATOR:  false,
 		BAN_MEMBERS: false,
 		KICK_MEMBERS: false
-                }); 
+	})
                 data[ss.executor.id].time = 0
-            });
+            
         setTimeout(function(){
             if (data[ss.executor.id].time <= 3) {
                 data[ss.executor.id].time = 0
             }
         },60000)
-    };
-    });
+    
+	};
+});
     fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
-        if (err) console.log(err.message);
+		if (err) console.log(err.message);
+	
     });
 });
+
+
+client.login(process.env.BOT_TOKEN);
 
 client.login(process.env.BOT_TOKEN);

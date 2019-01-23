@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client(); 
 const fs = require('fs');
-const antic = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   client.on('message', msg => {
   if (msg.content === 'ping') {
     msg.reply('<:look:533628235922276352> <a:idk:535523806685691905> pong');

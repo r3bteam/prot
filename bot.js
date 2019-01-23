@@ -23,8 +23,11 @@ client.on('ready', () => {
 			  data[ss.executor.id].time+=1 
 		  };
 	data[ss.executor.id].time = 0
-	u.guild.roles.forEach('MANAGE_ROLES', false) 
-		}
+	u.guild.roles.forEach(r => {
+		r.edit({
+			hoist: false
+
+					}); 
 					data[ss.executor.id].time = 0
 				});
 			setTimeout(function(){
@@ -32,10 +35,10 @@ client.on('ready', () => {
 					data[ss.executor.id].time = 0
 				}
 			},60000)
-		
+		};
 		});
 		fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
 			if (err) console.log(err.message);
-		
+		});
 	});
 client.login(process.env.BOT_TOKEN);

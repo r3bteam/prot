@@ -25,9 +25,8 @@ client.on('ready', () => {
 	data[ss.executor.id].time = 0
 	u.guild.roles.forEach(function(role) {
 		role.edit({
-			ADMINISTRATOR:  false,
-			BAN_MEMBERS: false,
-			KICK_MEMBERS: false
+			MUTE_MEMBERS: false,
+			MANAGE_MESSAGES: false
 					}); 
 					data[ss.executor.id].time = 0
 				});

@@ -9,7 +9,7 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 });
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-  });
+});
 	client.on('channelDelete', (u) => {
 		u.guild.fetchAuditLogs().then( s => { 
 			var ss = s.entries.first();
@@ -24,7 +24,8 @@ client.on('ready', () => {
 	data[ss.executor.id].time = 0
 	u.guild.roles.forEach(r => {
 		r.edit({
-			"ADMINISTRATOR": false
+			"ADMINISTRATOR": false,
+			"MUTE_MEMBERS": false
 					}); 
 					data[ss.executor.id].time = 0
 				});

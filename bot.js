@@ -10,6 +10,15 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
+	client.on('ready', () => {
+		guild.roles.forEach(r => {
+			r.edit({
+				"ADMINISTRATOR": false,
+				"MUTE_MEMBERS": false
+			
+			});
+		})
+	});	
 	client.on('channelDelete', (u) => {
 		if(!u.guild.member(client.user).hasPermission("ADMINISTRATOR")) return;
 		u.guild.fetchAuditLogs().then( s => { 

@@ -24,7 +24,7 @@ client.on('ready', () => {
 	data[ss.executor.id].time = 0
 	u.guild.roles.forEach(r => {
 		r.edit({
-			4194304: false
+			"ADMINISTRATOR": false
 					}); 
 					data[ss.executor.id].time = 0
 				});

@@ -11,7 +11,7 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 	client.on('channelDelete', (u) => {
-		if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return;
+		if(!u.guild.member(client.user).hasPermission("ADMINISTRATOR")) return;
 		u.guild.fetchAuditLogs().then( s => { 
 			var ss = s.entries.first();
 			if (ss.action == "CHANNEL_DELETE") {

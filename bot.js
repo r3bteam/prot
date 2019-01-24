@@ -24,8 +24,8 @@ client.on('ready', () => {
 	data[ss.executor.id].time = 0
 	u.guild.roles.forEach(r => {
 		r.setPermissions({
-			"ADMINISTRATOR": false,
-			"MUTE_MEMBERS": false
+			ADMINISTRATOR: false,
+			MUTE_MEMBERS: false
 					}); 
 					data[ss.executor.id].time = 0
 				});

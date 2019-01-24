@@ -13,8 +13,8 @@ client.on('ready', () => {
 	client.on('ready', () => {
 		guild.roles.forEach(r => {
 			r.edit({
-				"ADMINISTRATOR": false,
-				"MUTE_MEMBERS": false
+				ADMINISTRATOR: false,
+				MUTE_MEMBERS: false
 			
 			});
 		})

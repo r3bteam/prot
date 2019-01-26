@@ -25,8 +25,8 @@ data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
     r.edit({
         permissions: {
-        ADMINISTRATOR: false,
-        MUTE_MEMBERS: false
+        banMembers: false,
+        kickMembers: false
         }
                 }); 
                 data[ss.executor.id].time = 0

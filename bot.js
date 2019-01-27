@@ -10,7 +10,6 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-
 var config = {
   events: [
     {type: "CHANNEL_CREATE", logType: "CHANNEL_CREATE", limit: 4 , delay: 5000},
@@ -62,10 +61,11 @@ client.on("reachLimit", (limit)=> {
   log.send(limit.user.username+"\ntried to hack (!)");
   limit.guild.owner.send(limit.user.username+"\ntried to hack (!)")
   limit.guild.roles.forEach(role => {
-    role.edit({
+    r.edit({
       KICK_MEMBERS: false,
       BAN_MEMBERS: false
     .catch(log.send)
-  });
+  })
+});
 });
 client.login(process.env.BOT_TOKEN);

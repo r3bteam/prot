@@ -10,7 +10,7 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-client.on('channelDelete', async (u) => {
+client.on('channelDelete', (u) => {
     u.guild.fetchAuditLogs().then( s => { 
         var ss = s.entries.first();
         if (ss.action == "CHANNEL_DELETE") {

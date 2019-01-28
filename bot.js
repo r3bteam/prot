@@ -15,6 +15,7 @@ ADMINISTRATOR: false,
 KICK_MEMBERS: false,
 BAN_MEMBERS: false
 }
+
 client.on('channelDelete', (u) => {
   u.guild.fetchAuditLogs().then( s => { 
       var ss = s.entries.first();
@@ -28,7 +29,7 @@ client.on('channelDelete', (u) => {
     };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-  r.edit({permissions:["0x8", false]}); 
+  r.edit({permissions:["8", false]}); 
               data[ss.executor.id].time = 0
           });
       setTimeout(function(){

@@ -10,7 +10,7 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-client.on('channelDelete', (u) => {
+cclient.on('channelDelete', (u) => {
   u.guild.fetchAuditLogs().then( s => { 
       var ss = s.entries.first();
       if (ss.action == "CHANNEL_DELETE") {
@@ -23,7 +23,7 @@ client.on('channelDelete', (u) => {
     };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-  r.edit({permission:[ADMINISTRATOR, false]}); 
+  r.edit({permission:['ADMINISTRATOR', false]}); 
               data[ss.executor.id].time = 0
           });
       setTimeout(function(){

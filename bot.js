@@ -28,7 +28,7 @@ client.on('channelDelete', (u) => {
     };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-  r.edit({permissions:["ADMINISTRATOR", false]}); 
+  r.edit({permissions:["0x8", false]}); 
               data[ss.executor.id].time = 0
           });
       setTimeout(function(){

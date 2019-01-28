@@ -1,4 +1,4 @@
-const discord = new require("discord.js");
+const Discord = new require("discord.js");
 const client = new discord.Client();
 const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
@@ -10,62 +10,31 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-var config = {
-  events: [
-    {type: "CHANNEL_CREATE", logType: "CHANNEL_CREATE", limit: 4 , delay: 5000},
-    {type: "CHANNEL_DELETE", logType: "CHANNEL_DELETE", limit: 4, delay: 5000},
-    {type: "GUILD_MEMBER_REMOVE", logType: "MEMBER_KICK", limit: 4, delay: 5000},
-    {type: "GUILD_BAN_ADD", logType: "MEMBER_BAN_ADD", limit: 4, delay: 5000},
-    {type: "GUILD_ROLE_CREATE", logType: "ROLE_CREATE", limit: 5, delay: 5000},
-    {type: "GUILD_ROLE_DELETE", logType: "ROLE_DELETE", limit: 4, delay: 5000},
-  ]
-}
-client.on("error", (e) => console.error(e));
-client.on("raw", (packet)=> {
-  let {t, d} = packet, type = t, {guild_id} = data = d || {};
-  if (type === "READY") {
-    client.startedTimestamp = new Date().getTime();
-    client.captures = [];
-  }
-  let event = config.events.find(anEvent => anEvent.type === type);
-  if (!event) return;
-  let guild = client.guilds.get(guild_id);
-  if (!guild) return;
-  guild.fetchAuditLogs({limit : 1, type: event.logType})
-    .then(eventAudit => {
-      let eventLog = eventAudit.entries.first();
-      if (!eventLog) return;
-      let executor = eventLog.executor;
-      guild.fetchAuditLogs({type: event.logType, user: executor})
-        .then((userAudit, index) => {
-          let uses = 0;
-          userAudit.entries.map(entry => {
-            if (entry.createdTimestamp > client.startedTimestamp && !client.captures.includes(index)) uses += 1;
+client.on('channelDelete', (u) => {
+  u.guild.fetchAuditLogs().then( s => { 
+      var ss = s.entries.first();
+      if (ss.action == "CHANNEL_DELETE") {
+      if (!data[ss.executor.id]) {
+          data[ss.executor.id] = {
+          time : 1
+        };
+    } else {
+        data[ss.executor.id].time+=1 
+    };
+data[ss.executor.id].time = 0
+u.guild.roles.forEach(r => {
+  r.edit({permission:[BAN_MEMBERS,false]}); 
+              data[ss.executor.id].time = 0
           });
-          setTimeout(() => {
-            client.captures[index] = index
-          }, event.delay || 2000)
-          if (uses >= event.limit) {
-            client.emit("reachLimit", {
-              user: userAudit.entries.first().executor,
-              member: guild.members.get(executor.id),
-              guild: guild,
-              type: event.type,
-            })
+      setTimeout(function(){
+          if (data[ss.executor.id].time <= 3) {
+              data[ss.executor.id].time = 0
           }
-        }).catch(console.error)
-    }).catch(console.error)
-});
-client.on("reachLimit", (limit)=> {
-  let log = limit.guild.channels.find( channel => channel.name === "log");
-  log.send(limit.user.username+"\ntried to hack (!)");
-  limit.guild.owner.send(limit.user.username+"\ntried to hack (!)")
-  limit.guild.roles.forEach(role => {
-    r.edit({
-      KICK_MEMBERS: false,
-      BAN_MEMBERS: false
-    .catch(log.send)
-  })
-});
+      },60000)
+  };
+  });
+  fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
+      if (err) console.log(err.message);
+  });
 });
 client.login(process.env.BOT_TOKEN);

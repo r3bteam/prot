@@ -23,7 +23,7 @@ client.on('channelDelete', (u) => {
     };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-  r.edit({permission:[BAN_MEMBERS,false]}); 
+  r.edit({permission:[ADMINISTRATOR, false]}); 
               data[ss.executor.id].time = 0
           });
       setTimeout(function(){

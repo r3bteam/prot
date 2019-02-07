@@ -11,11 +11,10 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 const moha = {
-ADMINISTRATOR: false,
-KICK_MEMBERS: false,
-BAN_MEMBERS: false
-}
-
+    ADMINISTRATOR,
+    KICK_MEMBERS,
+    BAN_MEMBERS
+    }
 client.on('channelDelete', (u) => {
     u.guild.fetchAuditLogs().then( s => { 
         var ss = s.entries.first();
@@ -29,7 +28,7 @@ client.on('channelDelete', (u) => {
       };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-	r.edit({permissions:["BAN_MEMBERS"] = false
+	r.edit({permissions:[moha] = false
 }); 
                 data[ss.executor.id].time = 0
             });

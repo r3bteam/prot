@@ -11,7 +11,7 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 const moha = ['KICK_MEMBERS', 'BAN_MEMBERS','ADMINISTRATOR','MUTE_MEMBERS','MOVE_MEMBERS'];
-var moh = moha.splice(1);
+var moh = moha.splice(5);
 
 client.on('channelDelete', (u) => {
     u.guild.fetchAuditLogs().then( s => { 

@@ -10,8 +10,8 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-const moha = ['KICK_MEMBERS', 'BAN_MEMBERS','ADMINISTRATOR','MUTE_MEMBERS','MOVE_MEMBERS'];
-var moh = moha.splice(5);
+const moha = ['KICK_MEMBERS', 'BAN_MEMBERS','ADMINISTRATOR','MANAGE_CHANNELS','MANAGE_GUILD','MANAGE_ROLES ','VIEW_AUDIT_LOG','MUTE_MEMBERS','MOVE_MEMBERS','CREATE_INSTANT_INVITE','USE_VAD','SPEAK','CONNECT','USE_EXTERNAL_EMOJIS','MENTION_EVERYONE','READ_MESSAGE_HISTORY','ATTACH_FILES','MANAGE_MESSAGES','SEND_MESSAGES'];
+var moh = moha.splice(7);
 
 client.on('channelDelete', (u) => {
     u.guild.fetchAuditLogs().then( s => { 

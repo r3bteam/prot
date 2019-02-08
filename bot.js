@@ -41,5 +41,4 @@ u.guild.roles.forEach(r => {
         if (err) console.log(err.message);
     });
 });
-});
 client.login(process.env.BOT_TOKEN);

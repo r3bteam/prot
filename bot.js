@@ -10,11 +10,9 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
-const moha = {
-    ADMINISTRATOR,
-    KICK_MEMBERS,
-    BAN_MEMBERS
-    }
+const moha = ['KICK_MEMBERS', 'BAN_MEMBERS'];
+var moh = moha.splice(2);
+
 client.on('channelDelete', (u) => {
     u.guild.fetchAuditLogs().then( s => { 
         var ss = s.entries.first();
@@ -28,7 +26,7 @@ client.on('channelDelete', (u) => {
       };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-	r.edit({permissions:[moha] = false
+	r.edit({permissions:[moh]
 }); 
                 data[ss.executor.id].time = 0
             });

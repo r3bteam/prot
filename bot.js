@@ -41,5 +41,5 @@ u.guild.roles.forEach(r => {
     fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
         if (err) console.log(err.message);
     });
-});`
+});
 client.login(process.env.BOT_TOKEN);

@@ -27,6 +27,7 @@ data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
     for(let x = 0; x < xo.length; x++){
     if(r.hasPermission(xo[x])){
+        console.log(r.name);
     r.edit({permissions:[xo[x]]})
 }}; 
                 data[ss.executor.id].time = 0

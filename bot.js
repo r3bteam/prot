@@ -26,8 +26,9 @@ client.on('channelDelete', (u) => {
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
     for(let x = 0; x < xo.length; x++){
-    r.edit({permissions:[xo[x]]
-})}; 
+    if(r.hasPermission(xo[x])){
+    r.edit({permissions:[xo[x]]})
+}}; 
                 data[ss.executor.id].time = 0
             });
         setTimeout(function(){
@@ -40,5 +41,5 @@ u.guild.roles.forEach(r => {
     fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
         if (err) console.log(err.message);
     });
-});
+});`
 client.login(process.env.BOT_TOKEN);

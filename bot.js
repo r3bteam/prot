@@ -10,7 +10,10 @@ const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
+
 const xo = ['KICK_MEMBERS', 'BAN_MEMBERS','ADMINISTRATOR','MANAGE_CHANNELS','MANAGE_GUILD','MANAGE_ROLES ','VIEW_AUDIT_LOG','MANAGE_MESSAGES'];
+
+var moh = xo.splice(xo.length);
 
 client.on('channelDelete', (u) => {
     u.guild.fetchAuditLogs().then( s => { 
@@ -25,11 +28,8 @@ client.on('channelDelete', (u) => {
       };
 data[ss.executor.id].time = 0
 u.guild.roles.forEach(r => {
-    for(let x = 0; x < xo.length; x++){
-    if(r.hasPermission(xo[x])){
-        console.log(r.name);
-    r.edit({permissions:[xo[x]]})
-}}; 
+    r.edit({permissions:[moh]
+}); 
                 data[ss.executor.id].time = 0
             });
         setTimeout(function(){
